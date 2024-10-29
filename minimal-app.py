@@ -17,7 +17,7 @@ app.layout = [
     # have a background color of #84d8d8
     html.H1(children='Population Growth by Year', style={'textAlign': 'center', 'background-color':'#84d8d8'}),
     dcc.Dropdown(df.country.unique(), 'Armenia', id="dropdown-selection"), 
-    dcc.Graph(id="graphs-content")
+    dcc.Graph(id="graph-content")
 ]
 
 # dataflow of the components 
@@ -29,7 +29,6 @@ app.layout = [
 def update_g(value):
     dff = df[df.country==value]
     return px.line(dff, x='year', y='pop')
-
 
 if __name__ == '__main__':
     app.run(debug=True)
