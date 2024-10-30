@@ -19,7 +19,7 @@ app.layout = [
     dcc.Dropdown(df.country.unique(), 
                  'France', 
                  id="dropdown-selection",
-                #  multi=True, # adds the ability to select multiple drop down entries
+                 multi=True, # adds the ability to select multiple drop down entries
                  placeholder="Select a Country" 
                  ), 
     dcc.Graph(id="graph-content")
@@ -31,9 +31,22 @@ app.layout = [
     Output('graph-content', 'figure'),
     Input('dropdown-selection', 'value')
 )
-def update_g(value):
-    dff = df[df.country==value]
-    return px.line(dff, x='year', y='pop')
+def update_g(values):
+    
+    
+    
+    # if a single country is selected , match only that value 
+    search_crit = None
+    
+    # if string "France", look up single value
+    if isinstance(values, str):
+        search_crit = df['country'] == values
+        
+    # if list ["France", "Algeria"] use isin to filter dataframe
+    else:
+        search_crit = df['country'].isin(values)
+    dff = df[search_crit]
+    return px.line(dff, x='year', y='pop', color='country')
 
 if __name__ == '__main__':
     app.run(debug=True)
