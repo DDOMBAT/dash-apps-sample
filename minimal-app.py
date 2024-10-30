@@ -21,7 +21,9 @@ app.layout = [
                  id="dropdown-selection",
                  multi=True, # adds the ability to select multiple drop down entries
                  placeholder="Select a Country" 
-                 ), 
+                 ),  
+    
+    
     dcc.Graph(id="graph-content")
 ]
 
