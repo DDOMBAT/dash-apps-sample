@@ -16,7 +16,12 @@ app.layout = [
     # styled <h1> to be in the center and 
     # have a background color of #84d8d8
     html.H1(children='Population Growth by Year', style={'textAlign': 'center', 'background-color':'#84d8d8'}),
-    dcc.Dropdown(df.country.unique(), 'Armenia', id="dropdown-selection"), 
+    dcc.Dropdown(df.country.unique(), 
+                 'France', 
+                 id="dropdown-selection",
+                #  multi=True, # adds the ability to select multiple drop down entries
+                 placeholder="Select a Country" 
+                 ), 
     dcc.Graph(id="graph-content")
 ]
 
