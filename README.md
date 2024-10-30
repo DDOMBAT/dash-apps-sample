@@ -18,5 +18,5 @@ source venv/bin/activate
 ```
 5) run dash app
 ```
-(venv) python app.py
+(venv) python minimal-app.py
 ```
